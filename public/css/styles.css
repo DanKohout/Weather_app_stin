@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+/*--------header-------*/
+header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 1em;
+    text-align: left;
+}
+
+.nav-link {
+    background-color: #f2f2f2;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5em 0.7em;
+    margin: 0 0.2em 0 0;
+    border-radius: 7px;
+}
+
+.nav-link:hover {
+    background-color: #777;
+    color: #fff;
+}
+
+/*-----end-header-----*/
+.title {
+    text-align: center;
+    width: 100%;
+    padding: 0.3em 1em;
+}
+.err-message-404{
+    text-align: center;
+    width: 100%;
+    padding: 0.3em 1em;
+}
+
+.container {
+    max-width: 50em;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+
+.search {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+
+.search input[type="text"] {
+    padding: 0.5em;
+    width: 15em;
+    font-size: 16px;
+}
+
+
+.search button {
+    padding: 0.5em 1.2em;
+    font-size: 16px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+.weather-info {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.weather-info h2 {
+    color: #333;
+    margin-bottom: 0.5em;
+}
+
+
+.weather-info p {
+    margin: 0.3em 0;
+}
+
+
+.weather-info p strong {
+    margin-right: 0.3em;
+}
+
+
+
+
+/*----footer----*/
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
