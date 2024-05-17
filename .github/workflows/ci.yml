@@ -1,10 +1,7 @@
 name: Node.js CI
 
-on: push
-#  push:
-#    branches:
-#      - main
-#      - basic-functions
+on:
+  push:
   pull_request:
     branches:
       - main
