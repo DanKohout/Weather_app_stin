@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js -e js,hbs",
-    "test": "jest test/app.test.js --forceExit --detectOpenHandles"
+    "test": "jest test/app.test.js --forceExit --detectOpenHandles --coverage"
     
   },
   "author": "Daniel Kohout",
