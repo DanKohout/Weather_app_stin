@@ -1,11 +1,13 @@
 const app = require('./app')
+const forecast = require('./utils/weather.js')
+
 const port = process.env.PORT || 3000
 
 /**
  * This function only prints the port number
  */
 app.listen(port, () => {
-    console.log('server is running on port '+ port)
+    console.log('server is running on port ' + port)
 })
 
 const path = require('path')
@@ -32,10 +34,27 @@ app.get('', (req, res) => {
 
 
 app.get('/hello', (req, res) => {
-    res.status(200).json({message:'Hello, world!'})
+    res.status(200).json({ message: 'Hello, world!' })
 })
 
 
+app.get('/weather', (req, res) => {
+    if (!req.query.address) {
+        return res.send({
+            error: 'You must provide an address!'
+        })
+    }
+    forecast.forecast_city(req.query.address, (error, forecastData) => {
+        if (error) {
+            return console.log('Error:', error)
+        }
+        console.log('Data:', forecastData)
+        res.send({
+            forecast: forecastData,
+        })
+    })
+    
+})
 
 app.get('*', (req, res) => {
     res.status(404).render('404', {
@@ -45,3 +64,41 @@ app.get('*', (req, res) => {
     })
 })
 
+
+
+
+/*app.get('/weather', (req, res) => {
+
+    if (!req.query.address) {
+        return res.send({
+            error: 'You must provide an address!'
+        })
+    }
+    forecast.forecast_city("prague", (error, forecastData) => {
+        if (error) {
+            return console.log('Error:', error)
+        }
+        console.log('Data:', forecastData)
+    })
+
+    forecast(latitude, longitude, (error, forecastData) => {
+        if (error) {
+            return res.send({ error })
+        }
+
+        res.send({
+            forecast: forecastData,
+            location,
+            address: req.query.address
+        })
+    })
+
+})*/
+/*
+forecast.forecast_city("prague", (error, forecastData) => {
+    if(error){
+        return console.log('Error:', error)
+    }
+    console.log('Data:', forecastData)
+})
+*/
