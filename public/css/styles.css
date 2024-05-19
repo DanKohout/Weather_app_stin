@@ -34,7 +34,8 @@ header {
     width: 100%;
     padding: 0.3em 1em;
 }
-.err-message-404{
+
+.err-message-404 {
     text-align: center;
     width: 100%;
     padding: 0.3em 1em;
@@ -75,14 +76,38 @@ h1 {
     cursor: pointer;
 }
 
-
 .weather-info {
     background-color: #fff;
     border-radius: 5px;
     padding: 1em;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
+.weather-info button {
+    padding: 0.5em 1.2em;
+    font-size: 16px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    top: 1em;
+    right: 2em;
+}
+
+.img-weather {
+    position: absolute;
+    top: 40%;
+    right: 2em;
+    
+}
+
+.img-weather img{
+    border: solid #007bff 10px;
+    border-radius: 3px;
+    background-color: #bdd2ff;
+}
 
 .weather-info h2 {
     color: #333;
@@ -103,10 +128,9 @@ h1 {
 
 
 /*----footer----*/
-footer{
+footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     text-align: center;
 }
-

@@ -14,20 +14,31 @@
     <div class="container">
         <h1>Weather App</h1>
         <div class="search">
-            <input type="text" placeholder="Enter city name">
-            <button>Search</button>
+            <input type="text" placeholder="Enter city name" id="input-search">
+            <button id="btn-search">Search</button>
         </div>
         <div class="weather-info">
             <h2>Current Weather</h2>
-            <p><strong>City:</strong> <span id="city">---</span></p>
-            <p><strong>Temperature:</strong> <span id="temperature">---</span></p>
-            <p><strong>Description:</strong> <span id="description">---</span></p>
-            
+            <p><strong>City:</strong>
+            <div id="city">---</div>
+            </p>
+            <p><strong>Temperature:</strong>
+            <div id="temperature">---</div>
+            </p>
+            <p><strong>Description:</strong>
+            <div id="description">---</div>
+            </p>
+            <div class="img-weather">
+                <img src="https://openweathermap.org/img/wn/04d@2x.png"
+                    id="img-weather">
+            </div>
+            <button id="btn-refresh">Refresh</button>
         </div>
     </div>
-    
+
     {{>footer}}
-    <!--<script src="script.js"></script>-->
+    <script src="functions.js"></script>
+    <!--<script src="functions.js"></script>-->
 </body>
 
 </html>
