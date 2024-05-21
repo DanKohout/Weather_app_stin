@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+    {{>header}}
+    <div class="subscription-name-container">
+        <div class="subscr-subcontainer">
+            <div>Logged in</div>
+            <div>{{user}}</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Weather App - subscription version</h1>
+        <div class="search">
+            <input type="text" placeholder="Enter city name" id="input-search">
+            <button id="btn-search">Search</button>
+        </div>
+        <div class="weather-info">
+            <h2>Current Weather</h2>
+            <p><strong>City:</strong>
+            <div id="city">---</div>
+            </p>
+            <p><strong>Temperature:</strong>
+            <div id="temperature">---</div>
+            </p>
+            <p><strong>Description:</strong>
+            <div id="description">---</div>
+            </p>
+            <div class="img-weather">
+                <img src="https://openweathermap.org/img/wn/04d@2x.png" id="img-weather">
+            </div>
+            <button id="btn-refresh">Refresh</button>
+        </div>
+
+        <div>
+            <h2>Historical data</h2>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="Enter date" id="input-search">
+            <button id="btn-search">Search</button>
+        </div>
+        <div class="weather-info">
+            <h2>historical Weather</h2>
+            <p><strong>Date:</strong>
+            <div id="date-historical">---</div>
+            </p>
+            <p><strong>City:</strong>
+            <div id="city-historical">---</div>
+            </p>
+            <p><strong>Temperature:</strong>
+            <div id="temperature-historical">---</div>
+            </p>
+            <p><strong>Description:</strong>
+            <div id="description-historical">---</div>
+            </p>
+            <div class="img-weather">
+                <img src="https://openweathermap.org/img/wn/04d@2x.png" id="img-weather-historical">
+            </div>
+            <button id="btn-refresh-historical">Refresh</button>
+        </div>
+    </div>
+
+    {{>footer}}
+    <script src="subscription.js"></script>
+    <!--<script src="functions.js"></script>-->
+</body>
+
+</html>

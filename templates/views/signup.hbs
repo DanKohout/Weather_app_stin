@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Weather App</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    {{>header}}
+    
+    <div class="container">
+        <h1>Signup</h1>
+        <div class="signup-form">
+            <input type="text" placeholder="Username" id="username">
+            <input type="password" placeholder="Password" id="password">
+            <h3>Payment of 50 CZK</h3>
+            <input type="text" placeholder="Petr Kohout" id="cardholder-name">
+            <input type="text" placeholder="1234567890123456" id="card-number">
+            <div class="payment-details">
+                <input type="text" placeholder="MM/YY" id="exp-date">
+                <input type="text" placeholder="CVV" id="cvv">
+            </div>
+            <button id="btn-signup">Signup</button>
+        </div>
+    </div>
+
+    {{>footer}}
+    <script src="signup.js"></script>
+</body>
+
+</html>

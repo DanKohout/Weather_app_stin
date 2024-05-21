@@ -1,5 +1,11 @@
 const app = require('./app')
 const forecast = require('./utils/weather.js')
+const handleSignup = require('./user_actions/signup.js');
+const handleLogin = require('./user_actions/login.js');
+const cookieParser = require('cookie-parser');
+const authMiddleware = require('./utils/auth_middleware');
+app.use(cookieParser());
+
 
 const port = process.env.PORT || 3000
 
@@ -25,19 +31,53 @@ hbs.registerPartials(partialsPath)
 app.use(express.static(publicDirectoryPath))
 
 
-
+/**
+ * HOME page
+ */
 app.get('', (req, res) => {
     res.status(200).render('index', {
         name: 'Daniel Kohout'
     })
 })
+/**
+ * Login page
+ */
+app.get('/login', (req, res) => {
+    res.status(200).render('login', {
+        name: 'Daniel Kohout'
+    })
+})
+/**
+ * Sign up page
+ */
+app.get('/signup', (req, res) => {
+    res.status(200).render('signup', {
+        name: 'Daniel Kohout'
+    })
+})
+/**
+ * page for premium users, similar to Home page, but with more stuff
+ * if no cookies of username are found, it will return 401
+ */
+app.use('/subscription', authMiddleware);
+app.get('/subscription', (req, res) => {
+    const { username } = req.cookies;
+    res.status(200).render('subscription', {
+        name: 'Daniel Kohout',
+        user: username
+    })
+})
 
-
+/**
+ * hello world (not needed)
+ */
 app.get('/hello', (req, res) => {
     res.status(200).json({ message: 'Hello, world!' })
 })
 
-
+/**
+ * communication with weather API -> returns the json from the API
+ */
 app.get('/weather', (req, res) => {
     if (!req.query.address) {
         return res.send({
@@ -48,14 +88,33 @@ app.get('/weather', (req, res) => {
         if (error) {
             return console.log('Error:', error)
         }
-        console.log('Data:', forecastData)
+        //console.log('Data:', forecastData)
         res.send({
             forecast: forecastData,
         })
     })
-    
+
 })
 
+
+/**
+ * Route to handle user signup
+ */
+app.post('/signup/user', handleSignup);
+
+
+/**
+ * Route to handle user login
+ */
+app.post('/login/user', handleLogin);
+
+
+
+
+
+/**
+ * custom 404 page
+ */
 app.get('*', (req, res) => {
     res.status(404).render('404', {
         title: '404',
@@ -66,39 +125,3 @@ app.get('*', (req, res) => {
 
 
 
-
-/*app.get('/weather', (req, res) => {
-
-    if (!req.query.address) {
-        return res.send({
-            error: 'You must provide an address!'
-        })
-    }
-    forecast.forecast_city("prague", (error, forecastData) => {
-        if (error) {
-            return console.log('Error:', error)
-        }
-        console.log('Data:', forecastData)
-    })
-
-    forecast(latitude, longitude, (error, forecastData) => {
-        if (error) {
-            return res.send({ error })
-        }
-
-        res.send({
-            forecast: forecastData,
-            location,
-            address: req.query.address
-        })
-    })
-
-})*/
-/*
-forecast.forecast_city("prague", (error, forecastData) => {
-    if(error){
-        return console.log('Error:', error)
-    }
-    console.log('Data:', forecastData)
-})
-*/

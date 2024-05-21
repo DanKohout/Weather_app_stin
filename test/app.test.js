@@ -26,6 +26,24 @@ describe('GET /hello', () => {
     });
 });
 
+describe('GET /login', () => {
+    it('responds with JSON message', async () => {
+        const response = await request(app).get('/login');
+        //console.log('Response body:', response.text);
+        expect(response.status).toBe(200);
+        expect(response.text).toContain('<h1>Login</h1>');
+    });
+});
+
+describe('GET /signup', () => {
+    it('responds with JSON message', async () => {
+        const response = await request(app).get('/signup');
+        //console.log('Response body:', response.text);
+        expect(response.status).toBe(200);
+        expect(response.text).toContain('<h1>Signup</h1>');
+    });
+});
+
 describe('GET /weather', () => {
     afterEach(() => {
         jest.clearAllMocks();
@@ -77,3 +95,4 @@ describe('GET /blab', () => {
         expect(response.status).toBe(404);
     });
 });
+
