@@ -14,7 +14,7 @@ const handleLogin = (req, res) => {
     // Read the existing users from the JSON file
     fs.readFile(USERS_FILE, 'utf8', async (err, data) => {
         if (err) {
-            console.error(err);
+            //console.error(err);
             return res.status(500).send('Internal server error');
         }
 

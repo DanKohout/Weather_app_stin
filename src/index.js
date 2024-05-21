@@ -88,7 +88,7 @@ app.get('/weather', (req, res) => {
         if (error) {
             return console.log('Error:', error)
         }
-        console.log('Data:', forecastData)
+        //console.log('Data:', forecastData)
         res.send({
             forecast: forecastData,
         })
