@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function sendToServer() {
         var data_addr = input_search.value
-
+        return
         if (data_addr == '') {
             data_addr = "praha"
         }

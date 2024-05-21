@@ -1,5 +1,5 @@
 const app = require('./app')
-const forecast = require('./utils/weather.js')
+const { forecast_city, historical_weather } = require('./utils/weather.js')
 const handleSignup = require('./user_actions/signup.js');
 const handleLogin = require('./user_actions/login.js');
 const cookieParser = require('cookie-parser');
@@ -67,6 +67,54 @@ app.get('/subscription', (req, res) => {
         user: username
     })
 })
+/**
+ * communication with weather API -> returns the json from the API
+ */
+//app.use('/subscription/weather', authMiddleware);
+
+/*const weatherData = {
+        location: {
+            name: "Praha"
+        },
+        forecast: [
+            {
+                date: "2024-05-20",
+                avgtemp_c: 16.9,
+                condition: {
+                    text: "Patchy light rain with thunder",
+                    icon: "//cdn.weatherapi.com/weather/64x64/day/386.png",
+                    code: 1273
+                }
+            }
+        ]
+}*/
+app.get('/subscription/weather', (req, res) => {
+    if (!req.query.address) {
+        return res.send({
+            error: 'You must provide an address!'
+        })
+    }
+    if (!req.query.date) {
+        return res.send({
+            error: 'You must provide an date!'
+        })
+    }
+    //res.json(weatherData);
+    historical_weather("", req.query.address, req.query.date/*"2024-05-20"*/, (error, histData) => {
+        if (error) {
+            res.send({
+                response: "err"
+            })
+            return console.log('Error:', error)
+        }
+        //console.log('Data:', histData)
+        res.send(histData)
+    })
+
+})
+
+
+
 
 /**
  * hello world (not needed)
@@ -84,11 +132,11 @@ app.get('/weather', (req, res) => {
             error: 'You must provide an address!'
         })
     }
-    forecast.forecast_city(req.query.address, (error, forecastData) => {
+    forecast_city(req.query.address, (error, forecastData) => {
         if (error) {
             return console.log('Error:', error)
         }
-        //console.log('Data:', forecastData)
+        console.log('Data:', forecastData)
         res.send({
             forecast: forecastData,
         })
