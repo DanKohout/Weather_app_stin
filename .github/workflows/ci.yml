@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4     
 
       - name: Use Node.js
         uses: actions/setup-node@v4
@@ -23,5 +23,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Create .env file
+        run: |
+          mkdir -p ./config
+          echo "API_KEY_WEATHER_HIST=${{ secrets.API_KEY_WEATHER_HIST }}" > ./config/test.env
+          echo "API_KEY_WEATHER_NOW=${{ secrets.API_KEY_WEATHER_NOW }}" >> ./config/test.env
+
+
       - name: Run tests
-        run: npm test
+        run: npm run test
