@@ -19,7 +19,8 @@ const axios = require('axios');
 
 const forecast_city = (city, callback) => {
   //openweathermap api - 1000 request/day
-  weatherURL = 'https://api.openweathermap.org/data/2.5/weather?units=metric&appid=0fed44c7b98eaf08e38d1d2cb18b346a'
+  apiKey = process.env.API_KEY_WEATHER_NOW
+  weatherURL = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${apiKey}`
   urlString = weatherURL + "&q=" + city
   url = urlString
 
@@ -43,7 +44,7 @@ const forecast_city = (city, callback) => {
  */
 const historical_weather = (apiKey, location, date, callback) => {
 
-  apiKey = '9b636686bc9c4e17b69151504242105'
+  apiKey = process.env.API_KEY_WEATHER_HIST
 
   const today = new Date();
   const requestedDate = new Date(date);
