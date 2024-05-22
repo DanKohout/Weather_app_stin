@@ -15,6 +15,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - uses: ./
+        with: API_KEY_WEATHER_HIST ${{secrets.API_KEY_WEATHER_HIST}}
+        with: API_KEY_WEATHER_NOW ${{secrets.API_KEY_WEATHER_NOW}}
+
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
