@@ -25,6 +25,6 @@ jobs:
 
       - name: Run tests
         env:
-          API_KEY_WEATHER_HIST ${{secrets.API_KEY_WEATHER_HIST}}
-          API_KEY_WEATHER_NOW ${{secrets.API_KEY_WEATHER_NOW}}
-        run: npm test
+          API_KEY_WEATHER_HIST: ${{secrets.API_KEY_WEATHER_HIST}}
+          API_KEY_WEATHER_NOW: ${{secrets.API_KEY_WEATHER_NOW}}
+        run: npm run test
