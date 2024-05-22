@@ -1,5 +1,6 @@
 const app = require('./app')
 const { forecast_city, historical_weather } = require('./utils/weather.js')
+const { getFavoritePlace, setFavoritePlace } = require('./user_actions/favorite_place.js')
 const handleSignup = require('./user_actions/signup.js');
 const handleLogin = require('./user_actions/login.js');
 const cookieParser = require('cookie-parser');
@@ -113,7 +114,19 @@ app.get('/subscription/weather', (req, res) => {
 
 })
 
+/**
+ * Route to get the favorite place of a user
+ */
+app.get('/user/favorite_get', (req, res) => {
+    getFavoritePlace(req, res);
+});
 
+/**
+ * Route to set the favorite place of a user
+ */
+app.post('/user/favorite_set', (req, res) => {
+    setFavoritePlace(req, res);
+});
 
 
 /**
@@ -136,7 +149,7 @@ app.get('/weather', (req, res) => {
         if (error) {
             return console.log('Error:', error)
         }
-        console.log('Data:', forecastData)
+        //console.log('Data:', forecastData)
         res.send({
             forecast: forecastData,
         })

@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const btn_login = document.getElementById('btn-login');
+    const btn_login = document.getElementById('btn-login')
 
     btn_login.addEventListener('click', () => {
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
+        const username = document.getElementById('username').value
+        const password = document.getElementById('password').value
 
         if (username && password) {
             fetch('/login/user', {
@@ -17,18 +17,21 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.text())
             .then(data => {
                 if (data === 'Login successful') {
-                    alert('Login successful');
-                    window.location.href = '/subscription'; // Redirect to desired page
+                    alert('Login successful')
+
+                    window.location.href = '/subscription' // Redirect to desired page
                 } else {
-                    alert(data);
+                    alert(data)
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
-                alert('Error logging in');
+                console.error('Error:', error)
+                alert('Error logging in')
             });
         } else {
-            alert('Please enter both username and password');
+            alert('Please enter both username and password')
         }
-    });
+    })
+
+
 });

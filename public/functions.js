@@ -9,28 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
 
-    /*window.addEventListener("load", (event) => {
-        log.textContent += "load\n"
-        city.textContent = ""
-
-        try {
-            fetch('/weather',)
-            fetch('/weather?address=' + location).then((response) => {
-                response.json().then((data) => {
-                    if (data.error) {
-                        messageOne.textContent = data.error
-                    } else {
-                        messageOne.textContent = data.location
-                        messageTwo.textContent = data.forecast
-                    }
-                })
-            })
-        } catch () {
-
-        }
-
-
-    })*/
     window.addEventListener("load", (event) => {
         sendToServer()
     })
@@ -62,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function sendToServer() {
         var data_addr = input_search.value
-        return
+        
         if (data_addr == '') {
             data_addr = "praha"
         }

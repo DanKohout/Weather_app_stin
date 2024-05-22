@@ -1,4 +1,5 @@
 
+
 const request = require('supertest');
 const app = require('../src/app');
 require('../src/index.js');
@@ -8,6 +9,7 @@ const cookieParser = require('cookie-parser');
 
 
 jest.mock('../src/utils/weather.js')
+
 
 
 

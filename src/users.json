@@ -1,6 +1,7 @@
 [
   {
     "username": "asdf",
-    "password": "$2a$10$.G45JkV.PxNMfy5hyh0g6uU5N5jfHPTnrIaO70tx45YLEqQNIPAAi"
+    "password": "$2a$10$.G45JkV.PxNMfy5hyh0g6uU5N5jfHPTnrIaO70tx45YLEqQNIPAAi",
+    "favorite_place": "benatky+nad+jizerou"
   }
 ]
