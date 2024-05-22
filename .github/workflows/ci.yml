@@ -24,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: npm test
         env:
           API_KEY_WEATHER_HIST ${{secrets.API_KEY_WEATHER_HIST}}
           API_KEY_WEATHER_NOW ${{secrets.API_KEY_WEATHER_NOW}}
+        run: npm test
