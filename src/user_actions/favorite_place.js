@@ -6,7 +6,7 @@ const getFavoritePlace = (req, res) => {
     const { username } = req.query;
 
     if (!username) {
-        console.log(req.query)
+        //console.log(req.query)
         return res.status(400).send('Username is required');
     }
 
