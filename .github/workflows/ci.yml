@@ -19,13 +19,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
-        with: API_KEY_WEATHER_HIST ${{secrets.API_KEY_WEATHER_HIST}}
-        with: API_KEY_WEATHER_NOW ${{secrets.API_KEY_WEATHER_NOW}}
 
       - name: Install dependencies
         run: npm install
 
       - name: Run tests
         run: npm test
-        with: API_KEY_WEATHER_HIST ${{secrets.API_KEY_WEATHER_HIST}}
-        with: API_KEY_WEATHER_NOW ${{secrets.API_KEY_WEATHER_NOW}}
+        env:
+          API_KEY_WEATHER_HIST ${{secrets.API_KEY_WEATHER_HIST}}
+          API_KEY_WEATHER_NOW ${{secrets.API_KEY_WEATHER_NOW}}
