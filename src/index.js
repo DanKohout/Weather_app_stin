@@ -72,23 +72,6 @@ app.get('/subscription', (req, res) => {
  * communication with weather API -> returns the json from the API
  */
 //app.use('/subscription/weather', authMiddleware);
-
-/*const weatherData = {
-        location: {
-            name: "Praha"
-        },
-        forecast: [
-            {
-                date: "2024-05-20",
-                avgtemp_c: 16.9,
-                condition: {
-                    text: "Patchy light rain with thunder",
-                    icon: "//cdn.weatherapi.com/weather/64x64/day/386.png",
-                    code: 1273
-                }
-            }
-        ]
-}*/
 app.get('/subscription/weather', (req, res) => {
     if (!req.query.address) {
         return res.send({
@@ -136,10 +119,16 @@ app.get('/hello', (req, res) => {
     res.status(200).json({ message: 'Hello, world!' })
 })
 
+app.get('/api', (req, res) => {
+    res.status(200).render('api_doc', {
+        name: 'Daniel Kohout'
+    })
+})
+
 /**
  * communication with weather API -> returns the json from the API
  */
-app.get('/weather', (req, res) => {
+app.get('/api/weather', (req, res) => {
     if (!req.query.address) {
         return res.send({
             error: 'You must provide an address!'
@@ -149,13 +138,40 @@ app.get('/weather', (req, res) => {
         if (error) {
             return console.log('Error:', error)
         }
-        //console.log('Data:', forecastData)
         res.send({
             forecast: forecastData,
         })
     })
 
 })
+/**
+ * communication with weather API for history -> returns reduced json from the API
+ */
+app.get('/api/weather/history', (req, res) => {
+    if (!req.query.address) {
+        return res.send({
+            error: 'You must provide an address!'
+        })
+    }
+    if (!req.query.date) {
+        return res.send({
+            error: 'You must provide an date!'
+        })
+    }
+    historical_weather("", req.query.address, req.query.date, (error, histData) => {
+        if (error) {
+            res.send({
+                response: "err"
+            })
+            return console.log('Error:', error)
+        }
+        res.send(histData)
+    })
+
+})
+
+
+
 
 
 /**

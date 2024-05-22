@@ -48,13 +48,13 @@ describe('GET /signup', () => {
     });
 });
 
-describe('GET /weather', () => {
+describe('GET /api/weather', () => {
     afterEach(() => {
         jest.clearAllMocks();
     });
 
     it('should return error if no address is provided', async () => {
-        const response = await request(app).get('/weather');
+        const response = await request(app).get('/api/weather');
 
         expect(response.status).toBe(200);
         expect(response.body).toEqual({
@@ -68,7 +68,7 @@ describe('GET /weather', () => {
             callback(null, mockForecastData);
         });
 
-        const response = await request(app).get('/weather').query({ address: 'Prague' });
+        const response = await request(app).get('/api/weather').query({ address: 'Prague' });
 
         expect(response.status).toBe(200);
         expect(response.body).toHaveProperty('forecast');
@@ -82,7 +82,7 @@ describe('GET /weather', () => {
             callback(null, mockForecastData);
         });
     
-        const response = await request(app).get('/weather').query({ address: 'pr' });
+        const response = await request(app).get('/api/weather').query({ address: 'pr' });
     
         expect(response.status).toBe(200);
         expect(response.body).toHaveProperty('forecast');
@@ -164,6 +164,71 @@ describe('GET /subscription/weather', () => {
         expect(response.body).toEqual({ response: 'err' });
     });
 });
+
+
+describe('GET /api/weather/history', () => {
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    const request_helper = () => request(app).get('/api/weather/history')
+
+    it('should return error if no address or date is provided', async () => {
+        const response = await request_helper();
+        
+        expect(response.status).toBe(200);
+        expect(response.body).toEqual({ error: 'You must provide an address!' });
+    });
+
+    it('should return error if no date is provided', async () => {
+        const response = await request_helper().query({ address: 'Prague' });
+        
+        expect(response.status).toBe(200);
+        expect(response.body).toEqual({ error: 'You must provide an date!' });
+    });
+
+    it('should return historical weather data for a valid address and date', async () => {
+        const mockHistData = {
+            location: { name: 'Prague' },
+            forecast: [
+                {
+                    date: '2024-05-20',
+                    avgtemp_c: 16.9,
+                    condition: {
+                        text: 'Patchy light rain with thunder',
+                        icon: '//cdn.weatherapi.com/weather/64x64/day/386.png',
+                        code: 1273
+                    }
+                }
+            ]
+        };
+        historical_weather.mockImplementation((apiKey, address, date, callback) => {
+            callback(null, mockHistData);
+        });
+
+        //const response = await request(app).get('/subscription/weather').query({ address: 'Prague', date: '2024-05-20' });
+        const response = await request_helper().query({ address: 'Prague', date: '2024-05-20' });
+
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveProperty('location');
+        expect(response.body.location).toHaveProperty('name');
+        expect(response.body.location.name).toBe('Prague');
+    });
+
+    it('should handle errors from the weather API', async () => {
+        historical_weather.mockImplementation((apiKey, address, date, callback) => {
+            callback('Unable to find location', undefined);
+        });
+
+        //const response = await request(app).get('/subscription/weather').query({ address: 'InvalidCity', date: '2024-05-20' });
+        const response = await request_helper().query({ address: 'InvalidCity', date: '2024-05-20' });
+
+
+        expect(response.status).toBe(200);
+        expect(response.body).toEqual({ response: 'err' });
+    });
+});
+
 
 describe('GET /subscription', () => {
     it('should return 401 Unauthorized if not authenticated', async () => {

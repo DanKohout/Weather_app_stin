@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
         temperature.textContent = "Loading..."
         description.textContent = "Loading..."
         try {
-            const response = await fetch('/weather?address=' + data_addr).then(response => {
+            const response = await fetch('/api/weather?address=' + data_addr).then(response => {
                 console.log(response)
                 return response
             })
