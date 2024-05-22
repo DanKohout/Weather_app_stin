@@ -23,8 +23,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Create .env file
+        run: |
+          mkdir -p ./config
+          echo "API_KEY_WEATHER_HIST=${{ secrets.API_KEY_WEATHER_HIST }}" > ./config/test.env
+          echo "API_KEY_WEATHER_NOW=${{ secrets.API_KEY_WEATHER_NOW }}" >> ./config/test.env
+
+
       - name: Run tests
-        env:
-          API_KEY_WEATHER_HIST: ${{secrets.API_KEY_WEATHER_HIST}}
-          API_KEY_WEATHER_NOW: ${{secrets.API_KEY_WEATHER_NOW}}
         run: npm run test
