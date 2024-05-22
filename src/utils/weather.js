@@ -37,41 +37,22 @@ const forecast_city = (city, callback) => {
 }
 
 
-
-
 /**
- * for now it is configured to get yesterday to now
- */
-/*const forecast_historical_latlong = (location, callback) => {
-  //today:
-  const todayDate = getTodayDate()
-  const boforeTodayDate = getPreviousDay(todayDate)
-  console.log("today:", todayDate, ", day before:", boforeTodayDate)
-
-
-  const getHistoricalWeather = async (apiKey, location, date) => {
-    const url = `http://api.weatherapi.com/v1/history.json?key=${apiKey}&q=${location}&dt=${date}`;
-    try {
-      const response = await axios.get(url);
-      response_filtered = extractWeatherData(response.data)
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching historical weather data:', error);
-      throw error;
-    }
-  }
-
-
-}*/
-
-
-
-/**
- * 
+ * method that with location and date gives you info about weather on that day
+ * ps. the api in free version has only 7 day history available!
  */
 const historical_weather = (apiKey, location, date, callback) => {
 
   apiKey = '9b636686bc9c4e17b69151504242105'
+
+  const today = new Date();
+  const requestedDate = new Date(date);
+  const differenceInDays = (today - requestedDate) / (1000 * 60 * 60 * 24);
+
+  if (differenceInDays > 6 || differenceInDays < 0 ) {
+    return callback('Date is more than 6 days in the past. History API supports only up to 7 days.', undefined);
+  }
+
   const url = `http://api.weatherapi.com/v1/history.json?key=${apiKey}&q=${location}&dt=${date}`
 
   axios.get(url)
@@ -117,8 +98,6 @@ const extractWeatherData = (data) => {
   }
 }
 
-
-/*
 const getTodayDate = () => {
   const today = new Date()
   const year = today.getFullYear()
@@ -126,18 +105,6 @@ const getTodayDate = () => {
   const day = today.getDate().toString().padStart(2, '0')
   return `${year}-${month}-${day}`
 }
-
-const getPreviousDay = (dateString) => {
-  const date = new Date(dateString)
-  date.setDate(date.getDate() - 1)
-  const year = date.getFullYear()
-  const month = (date.getMonth() + 1).toString().padStart(2, '0')
-  const day = date.getDate().toString().padStart(2, '0')
-  return `${year}-${month}-${day}`
-}
-*/
-
-
 
 
 //exports.forecast_geolocation = forecast_geolocation
