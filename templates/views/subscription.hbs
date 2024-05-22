@@ -40,37 +40,25 @@
             <button id="btn-refresh">Refresh</button>
         </div>
 
-        <div>
-            <h2>Historical data</h2>
-        </div>
-        <div class="search">
-            <input type="text" placeholder="Enter date" id="input-search">
-            <button id="btn-search">Search</button>
-        </div>
+
+
         <div class="weather-info">
-            <h2>historical Weather</h2>
-            <p><strong>Date:</strong>
-            <div id="date-historical">---</div>
-            </p>
-            <p><strong>City:</strong>
-            <div id="city-historical">---</div>
-            </p>
-            <p><strong>Temperature:</strong>
-            <div id="temperature-historical">---</div>
-            </p>
-            <p><strong>Description:</strong>
-            <div id="description-historical">---</div>
-            </p>
-            <div class="img-weather">
-                <img src="https://openweathermap.org/img/wn/04d@2x.png" id="img-weather-historical">
+            <div class="search">
+                <button id="btn-search-hist">History</button>
             </div>
-            <button id="btn-refresh-historical">Refresh</button>
+            <h2>Weather history</h2>
+            <div class="weather-info" id="weather-container">
+                <h2>click the button to load history(3 days) of the city you want to find</h2>
+
+            </div>
         </div>
+
     </div>
 
     {{>footer}}
+
+    <script src="functions.js"></script>
     <script src="subscription.js"></script>
-    <!--<script src="functions.js"></script>-->
 </body>
 
 </html>

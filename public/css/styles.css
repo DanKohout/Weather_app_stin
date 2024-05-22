@@ -211,7 +211,7 @@ h1 {
 
 /*----footer----*/
 footer {
-    position: absolute;
+    position: sticky;
     bottom: 0;
     width: 100%;
     text-align: center;
