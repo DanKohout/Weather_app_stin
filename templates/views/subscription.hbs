@@ -12,8 +12,7 @@
 <body>
     {{>header}}
     <div class="subscription-name-container">
-        <div class="subscr-subcontainer">
-            <div>Logged in</div>
+        <div class="subscr-subcontainer" id="username">
             <div>{{user}}</div>
         </div>
     </div>
@@ -40,12 +39,33 @@
             <button id="btn-refresh">Refresh</button>
         </div>
 
+        <div class="weather-info-ver2">
 
+            <button id="btn-get-favorite">Load favorite</button>
+            <button id="btn-set-favorite">Set current city as favorite</button>
 
-        <div class="weather-info">
-            <div class="search">
-                <button id="btn-search-hist">History</button>
+            <h2>Favorite</h2>
+            <p><strong>City:</strong>
+            <div id="city-fav">---</div>
+            </p>
+            <p><strong>Temperature:</strong>
+            <div id="temperature-fav">---</div>
+            </p>
+            <p><strong>Description:</strong>
+            <div id="description-fav">---</div>
+            </p>
+            <div class="img-weather">
+                <img src="https://openweathermap.org/img/wn/04d@2x.png" id="img-weather-fav">
             </div>
+        </div>
+
+
+
+
+        <div class="weather-info-ver2">
+
+            <button id="btn-search-hist">History</button>
+
             <h2>Weather history</h2>
             <div class="weather-info" id="weather-container">
                 <h2>click the button to load history(3 days) of the city you want to find</h2>

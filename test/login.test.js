@@ -111,7 +111,7 @@ describe('handleLogin', () => {
         await handleLogin(req, res);
 
         expect(fs.readFile).toHaveBeenCalledWith(USERS_FILE, 'utf8', expect.any(Function));
-        expect(res.cookie).toHaveBeenCalledWith('username', 'testuser', { httpOnly: true, secure: false, maxAge: 3600000 });
+        expect(res.cookie).toHaveBeenCalledWith('username', 'testuser', { httpOnly: false, secure: false, maxAge: 3600000 });
         expect(res.status).toHaveBeenCalledWith(200);
         expect(res.send).toHaveBeenCalledWith('Login successful');
     });

@@ -92,6 +92,23 @@ h1 {
     position: relative;
 }
 
+.weather-info-ver2 {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1em;
+    margin-top: 2em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+.weather-info-ver2 button {
+    padding: 0.5em 1.2em;
+    font-size: 16px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
 .weather-info button {
     padding: 0.5em 1.2em;
     font-size: 16px;

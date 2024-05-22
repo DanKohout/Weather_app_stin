@@ -33,7 +33,7 @@ const handleLogin = (req, res) => {
         }
 
         // Set a cookie (in a real-world scenario, this should be a secure token)
-        res.cookie('username', username, { httpOnly: true, secure: false, maxAge: 3600000 }); // 1 hour expiration for demonstration
+        res.cookie('username', username, { httpOnly: false, secure: false, maxAge: 3600000 }); // 1 hour expiration for demonstration
         res.status(200).send('Login successful');
     });
 };
